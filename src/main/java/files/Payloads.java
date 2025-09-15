@@ -2,8 +2,7 @@ package files;
 
 public class Payloads {
 
-    public static String addPlace()
-    {
+    public static String addPlace() {
         return "{\n" +
                 "\"location\": {\n" +
                 "\"lat\": -36.383494,\n" +
@@ -23,11 +22,42 @@ public class Payloads {
                 "}";
     }
 
-    public static String updatePlace(String placeId, String newAddr){
+    public static String updatePlace(String placeId, String newAddr) {
         return "{\n" +
-                "\"place_id\":\""+placeId+"\",\n" +
-                "\"address\":\""+newAddr+"\",\n" +
+                "\"place_id\":\"" + placeId + "\",\n" +
+                "\"address\":\"" + newAddr + "\",\n" +
                 "\"key\":\"qaclick123\"\n" +
+                "}";
+    }
+
+    public static String coursePrice() {
+        return "{\n" +
+                "  \"dashboard\": {\n" +
+                "    \"purchaseAmount\": 1900,\n" +
+                "    \"website\": \"rahulshettyacademy.com\"\n" +
+                "  },\n" +
+                "  \"courses\": [\n" +
+                "  {\n" +
+                "    \"title\":\"Selenium-Java\",\n" +
+                "    \"price\":200,\n" +
+                "    \"copies\":5    \n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"title\":\"Playwright\",\n" +
+                "    \"price\":210,\n" +
+                "    \"copies\":2    \n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"title\":\"RestAssured\",\n" +
+                "    \"price\":110,\n" +
+                "    \"copies\":4    \n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"title\":\"Appium\",\n" +
+                "    \"price\":20,\n" +
+                "    \"copies\":2    \n" +
+                "  }\n" +
+                "  ]\n" +
                 "}";
     }
 }
