@@ -60,4 +60,14 @@ public class Payloads {
                 "  ]\n" +
                 "}";
     }
+
+    public static String addBook()
+    {
+        return "{\n" +
+                "\"name\":\"Learn Appium Automation with Java\",\n" +
+                "\"isbn\":\"bcd\",\n" +
+                "\"aisle\":\"111\",\n" +
+                "\"author\":\"John Cena\"\n" +
+                "}\n";
+    }
 }
