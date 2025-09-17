@@ -1,5 +1,8 @@
 package files;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class Payloads {
 
     public static String addPlace() {
@@ -61,13 +64,15 @@ public class Payloads {
                 "}";
     }
 
-    public static String addBook()
+    public static String addBook(String isbn, String aisle)
     {
         return "{\n" +
                 "\"name\":\"Learn Appium Automation with Java\",\n" +
-                "\"isbn\":\"bcd\",\n" +
-                "\"aisle\":\"111\",\n" +
+                "\"isbn\":\""+isbn+"\",\n" +
+                "\"aisle\":\""+aisle+"\",\n" +
                 "\"author\":\"John Cena\"\n" +
                 "}\n";
     }
+
+
 }

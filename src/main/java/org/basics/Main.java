@@ -6,16 +6,19 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 
+import java.io.IOException;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //Validate if Add API is working as expected
        RestAssured.baseURI="https://rahulshettyacademy.com";
-       String response=given().queryParam("key","qaclick123")
+       String response=given().log().all().queryParam("key","qaclick123")
                .header("Content-Type","application/json")
-               .body(Payloads.addPlace())
+               //.body(Payloads.addPlace())
+               .body(ReusableMethods.generateStringFromBytes("C:\\Users\\dell\\Downloads\\addplace.json"))
                .when().post("/maps/api/place/add/json")
                .then().assertThat().statusCode(200).body("scope",equalTo("APP"))
                .header("Server","Apache/2.4.52 (Ubuntu)").extract().response().asString();
