@@ -1,8 +1,5 @@
 package files;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 public class Payloads {
 
     public static String addPlace() {
@@ -74,5 +71,10 @@ public class Payloads {
                 "}\n";
     }
 
-
+    public static String deleteBook(String id)
+    {
+        return "{\n" +
+                "\"ID\" : \""+id+"\"\n" +
+                "} \n";
+    }
 }
