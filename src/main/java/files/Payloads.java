@@ -77,4 +77,20 @@ public class Payloads {
                 "\"ID\" : \""+id+"\"\n" +
                 "} \n";
     }
+
+    public static String createBug(String summary)
+    {
+        return "{\n" +
+                "    \"fields\": {\n" +
+                "       \"project\":\n" +
+                "       {\n" +
+                "          \"key\": \"SCRUM\"\n" +
+                "       },\n" +
+                "       \"summary\": \""+summary+"\",\n" +
+                "       \"issuetype\": {\n" +
+                "          \"name\": \"Bug\"\n" +
+                "       }\n" +
+                "   }\n" +
+                "}\n";
+    }
 }
