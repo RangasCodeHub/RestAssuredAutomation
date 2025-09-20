@@ -1,5 +1,6 @@
 package Authorization;
 
+import Pojo.GetCourse;
 import files.ReusableMethods;
 
 import static io.restassured.RestAssured.*;
@@ -16,8 +17,10 @@ public class OAuthTest {
         String acToken=ReusableMethods.rawToJson(response).getString("access_token");
 
         //Get course details
-        String courseDetails=given().log().all().queryParam("access_token",acToken)
+        GetCourse getCourse=given().log().all().queryParam("access_token",acToken)
                 .when().get("https://rahulshettyacademy.com/oauthapi/getCourseDetails")
-                .then().log().all().extract().response().asString();
+                .then().log().all().extract().response().as(GetCourse.class);
+        System.out.println(getCourse.getLinkedIn());
+        System.out.println(getCourse.getInstructor());
     }
 }
