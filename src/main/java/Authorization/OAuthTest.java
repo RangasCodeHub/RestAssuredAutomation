@@ -1,12 +1,20 @@
 package Authorization;
 
-import Pojo.GetCourse;
+import Pojo.RSCourses.API;
+import Pojo.RSCourses.GetCourse;
+import Pojo.RSCourses.WebAutomation;
 import files.ReusableMethods;
+import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
 public class OAuthTest {
     public static void main(String[] args) {
+        String[] expectedCourses = {"Selenium Webdriver Java","Cypress","Protractor"};
         String response=given().log().all()
                 .formParam("client_id","692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
                 .formParam("client_secret","erZOWM9g3UtwNRj340YYaK_W")
@@ -22,5 +30,18 @@ public class OAuthTest {
                 .then().log().all().extract().response().as(GetCourse.class);
         System.out.println(getCourse.getLinkedIn());
         System.out.println(getCourse.getInstructor());
+        List<API> apiCourses = getCourse.getCourses().getApi();
+        for (API apiCours : apiCourses) {
+            if (apiCours.getCourseTitle().equalsIgnoreCase("SoapUI Webservices testing")) {
+                System.out.println(apiCours.getPrice());
+            }
+        }
+        List<WebAutomation> waList = getCourse.getCourses().getWebAutomation();
+        List<String> actualCourses = new ArrayList<>();
+        for(WebAutomation wa:waList)
+        {
+            actualCourses.add(wa.getCourseTitle());
+        }
+        Assert.assertEquals(Arrays.asList(expectedCourses), actualCourses);
     }
 }

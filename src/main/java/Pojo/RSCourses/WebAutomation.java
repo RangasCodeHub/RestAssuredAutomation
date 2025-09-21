@@ -1,6 +1,6 @@
-package Pojo;
+package Pojo.RSCourses;
 
-public class Mobile {
+public class WebAutomation {
     private String courseTitle;
     private String price;
 
