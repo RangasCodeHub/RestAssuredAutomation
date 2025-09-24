@@ -36,9 +36,18 @@ public class EcomAPITest {
         String productId= new JsonPath(addProdResponse).getString("productId");
         //Create order
         RequestSpecification createOrderSpec = new RequestSpecBuilder().setBaseUri(baseURI).addHeader("Authorization",token).setContentType(ContentType.JSON).build();
-
-        given().log().all().spec(createOrderSpec).body(getOrderDetails(productId))
+        String createOrderResponse=given().log().all().spec(createOrderSpec).body(getOrderDetails(productId))
                 .when().post("/api/ecom/order/create-order")
+                .then().log().all().extract().response().asString();
+        String orderID = new JsonPath(createOrderResponse).getString("orders[0]");
+        System.out.println("OrderID:"+orderID);
+        //View order details
+        RequestSpecification spec=new RequestSpecBuilder().setBaseUri(baseURI).addHeader("Authorization",token).setContentType(ContentType.JSON).addQueryParam("id",orderID).build();
+        given().log().all().spec(spec).when().get("/api/ecom/order/get-orders-details?id="+orderID)
+                .then().log().all().extract().response().asString();
+        //Delete product
+        RequestSpecification deleteSpec=new RequestSpecBuilder().setBaseUri(baseURI).addHeader("Authorization",token).build();
+        given().log().all().spec(deleteSpec).when().delete("/api/ecom/product/delete-product/"+productId)
                 .then().log().all().extract().response();
     }
 
